@@ -14,9 +14,9 @@ namespace StartScreen
     {
     private:
         SDL_Renderer *Renderer;
+        std::list<StartScreen::EdgeTriangle> EdgeTriangles;
 
     public:
-        std::list<StartScreen::EdgeTriangle> EdgeTriangles;
         ~Screen();
         void SetRenderer(SDL_Renderer *Renderer)
         {
