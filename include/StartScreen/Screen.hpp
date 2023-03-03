@@ -18,15 +18,9 @@ namespace StartScreen
 
     public:
         ~Screen();
-        void SetRenderer(SDL_Renderer *Renderer)
-        {
-            this->Renderer = Renderer;
-        }
-
-        SDL_Renderer *GetRenderer()
-        {
-            return this->Renderer;
-        }
+        
+        void SetRenderer(SDL_Renderer *Renderer);
+        SDL_Renderer *GetRenderer();
 
         void InitEdgeTriangles();
         void Render();
