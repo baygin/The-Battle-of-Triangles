@@ -6,7 +6,7 @@ StartScreen::EdgeTriangle::~EdgeTriangle()
     SDL_FreeSurface(this->Surface);
 }
 
-StartScreen::EdgeTriangle::Render()
+void StartScreen::EdgeTriangle::Render()
 {
     SDL_RenderCopyEx(this->Renderer, this->Texture, NULL, &this->Rect, this->Angle, 0, SDL_FLIP_NONE);
 }
