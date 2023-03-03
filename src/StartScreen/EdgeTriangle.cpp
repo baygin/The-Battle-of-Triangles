@@ -2,8 +2,15 @@
 
 StartScreen::EdgeTriangle::~EdgeTriangle()
 {
-    SDL_DestroyTexture(this->Texture);
-    SDL_FreeSurface(this->Surface);
+    if (this->Texture)
+    {
+        SDL_DestroyTexture(this->Texture);
+    }
+
+    if (this->Surface)
+    {
+        SDL_FreeSurface(this->Surface);
+    }
 }
 
 void StartScreen::EdgeTriangle::Render()
