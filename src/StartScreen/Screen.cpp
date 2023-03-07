@@ -2,7 +2,6 @@
 
 StartScreen::Screen::~Screen()
 {
-    
 }
 
 void StartScreen::Screen::InitEdgeTriangles()
@@ -66,4 +65,14 @@ void StartScreen::Screen::Render()
     {
         Iterator->Render();
     }
+}
+
+void StartScreen::Screen::SetRenderer(SDL_Renderer *Renderer)
+{
+    this->Renderer = Renderer;
+}
+
+SDL_Renderer *StartScreen::Screen::GetRenderer()
+{
+    return this->Renderer;
 }

@@ -14,19 +14,13 @@ namespace StartScreen
     {
     private:
         SDL_Renderer *Renderer;
+        std::list<StartScreen::EdgeTriangle> EdgeTriangles;
 
     public:
-        std::list<StartScreen::EdgeTriangle> EdgeTriangles;
         ~Screen();
-        void SetRenderer(SDL_Renderer *Renderer)
-        {
-            this->Renderer = Renderer;
-        }
-
-        SDL_Renderer *GetRenderer()
-        {
-            return this->Renderer;
-        }
+        
+        void SetRenderer(SDL_Renderer *Renderer);
+        SDL_Renderer *GetRenderer();
 
         void InitEdgeTriangles();
         void Render();

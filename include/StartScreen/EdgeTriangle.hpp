@@ -10,10 +10,8 @@ namespace StartScreen
                          public Abstract::SDL_Rotatable
     {
     public:
-        void Render()
-        {
-            SDL_RenderCopyEx(this->Renderer, this->Texture, NULL, &this->Rect, this->Angle, 0, SDL_FLIP_NONE);
-        }
+        ~EdgeTriangle();
+        void Render();
     };
 }
 
