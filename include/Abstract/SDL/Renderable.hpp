@@ -10,7 +10,6 @@ namespace Abstract
 {
     namespace SDL
     {
-
         class Renderable : public Rectangle
         {
         protected:
