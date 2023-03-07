@@ -52,6 +52,36 @@ namespace Abstract
                 this->SetSurface(TTF_RenderText_Solid(this->Font, this->Text, this->Color));
                 this->SetTexture(SDL_CreateTextureFromSurface(this->Renderer, this->Surface));
             }
+
+            void SetColorRed(Uint8 Color)
+            {
+                this->Color.r = Color;
+            }
+
+            Uint8 GetColorRed()
+            {
+                return this->Color.r;
+            }
+
+            void SetColorBlue(Uint8 Color)
+            {
+                this->Color.b = Color;
+            }
+
+            Uint8 GetColorBlue()
+            {
+                return this->Color.b;
+            }
+
+            void SetColorGreen(Uint8 Color)
+            {
+                this->Color.g = Color;
+            }
+
+            Uint8 GetColorGreen()
+            {
+                return this->Color.g;
+            }
         };
     }
 }
