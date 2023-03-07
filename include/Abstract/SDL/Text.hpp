@@ -9,7 +9,7 @@ namespace Abstract
 {
     namespace SDL
     {
-        class SDL_Text : public Renderable
+        class Text : public Renderable
         {
         protected:
             char *Text;
