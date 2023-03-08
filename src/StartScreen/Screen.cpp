@@ -83,11 +83,13 @@ void StartScreen::Screen::InitMenu()
         Item->SetRenderer(this->Renderer);
         Item->SetText((char *)*MenuListIterator);
         Item->SetFont(Neucha);
+        Item->CreateTextureFromText();
+        Menu->SetItem(Item);
+
         if (i == 0)
         {
             Menu->SetSelectedMenu(Item);
         }
-        Menu->SetItem(Item);
     }
 
     this->Menu = Menu;
@@ -120,7 +122,6 @@ void StartScreen::Screen::Render()
 
     for (; MenuItemIterator != MainMenuItems.end(); ++MenuItemIterator)
     {
-        (*MenuItemIterator)->CreateTextureFromText();
         (*MenuItemIterator)->Render();
     }
 
