@@ -5,7 +5,7 @@ cp_sources = $(wildcard src/*.cpp) $(wildcard src/*/*.cpp)
 objects = $(c_sources:.c=.o) $(cp_sources:.cpp=.o) 
 objects := $(addsuffix .o,$(basename $(objects)))
 
-flags = -g -Wl,--copy-dt-needed-entries -I include -L lib -Wall -lSDL2main -lSDL2 -lSDL2_image -lGL -lSDL2_mixer -loyamo -ljson-c -luuid
+flags = -g -Wl,--copy-dt-needed-entries -I include -L lib -Wall -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lGL -lSDL2_mixer -loyamo -ljson-c -luuid
 
 $(output): $(objects)
 	g++ $(objects) $(flags) -o ./bin/$(output)
