@@ -1,42 +1,87 @@
 #include "../include/Main.hpp"
 #include <unistd.h>
+#include <algorithm>
+#include <list>
 
 int main()
 {
-   int Width = 800;
-   int Height = 600;
+    int Width = 800;
+    int Height = 600;
 
-   SDL_Window *Window = SDL_CreateWindow("The Battle of Triangles", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, Width, Height, 0);
-   SDL_Renderer *Renderer = SDL_CreateRenderer(Window, -1, 0);
+    SDL_Window *Window = SDL_CreateWindow("The Battle of Triangles", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, Width, Height, 0);
+    SDL_Renderer *Renderer = SDL_CreateRenderer(Window, -1, 0);
 
-   StartScreen::Screen *Screen = new StartScreen::Screen();
-   Screen->SetRenderer(Renderer);
-   Screen->SetHeight(Height);
-   Screen->SetWidth(Width);
+    StartScreen::Screen *Screen = new StartScreen::Screen();
+    Screen->SetRenderer(Renderer);
+    Screen->SetHeight(Height);
+    Screen->SetWidth(Width);
 
-   Screen->InitEdgeTriangles();
+    Screen->Init();
 
-   SDL_Event Event;
-   int Loop = 1;
+    StartScreen::Menu *Menu = Screen->GetMenu();
 
-   while (Loop)
-   {
-      SDL_PollEvent(&Event);
+    SDL_Event Event;
 
-      if (Event.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
-      {
-         Loop = 0;
-      }
+    const int FPS = 60;
+    const int FrameDelay = 1000 / FPS;
 
-      SDL_RenderClear(Renderer);
-      Screen->Render();
-      SDL_RenderPresent(Renderer);
-   }
+    Uint32 FrameStart;
+    int FrameTime;
 
-   delete Screen;
+    while (1)
+    {
+        SDL_PollEvent(&Event);
 
-   SDL_Quit();
-   IMG_Quit();
+        if (Event.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
+        {
+            break;
+        }
 
-   return EXIT_SUCCESS;
+        if (Event.type == SDL_KEYDOWN && Event.key.keysym.scancode == SDL_SCANCODE_DOWN)
+        {
+            std::list<StartScreen::MenuItem *> Items = Menu->GetItems();
+            StartScreen::MenuItem *SelectedItem = Menu->GetSelectedMenu();
+
+            std::list<StartScreen::MenuItem *>::iterator Iterator = std::find(Items.begin(), Items.end(), SelectedItem);
+
+            std::list<StartScreen::MenuItem *>::iterator Prev = std::prev(Iterator, 1);
+
+            if (Prev != Items.end())
+            {
+                Menu->SetSelectedMenu(*Prev);
+            }
+        }
+        else if (Event.type == SDL_KEYDOWN && Event.key.keysym.scancode == SDL_SCANCODE_UP)
+        {
+            std::list<StartScreen::MenuItem *> Items = Menu->GetItems();
+            StartScreen::MenuItem *SelectedItem = Menu->GetSelectedMenu();
+
+            std::list<StartScreen::MenuItem *>::iterator Iterator = std::find(Items.begin(), Items.end(), SelectedItem);
+
+            std::list<StartScreen::MenuItem *>::iterator Next = std::next(Iterator, 1);
+
+            if (Next != Items.end())
+            {
+                Menu->SetSelectedMenu(*Next);
+            }
+        }
+
+        SDL_RenderClear(Renderer);
+        Screen->Render();
+        SDL_RenderPresent(Renderer);
+
+        FrameTime = SDL_GetTicks() - FrameStart;
+
+        if (FrameDelay > FrameTime)
+        {
+            SDL_Delay(FrameDelay - FrameTime);
+        }
+    }
+
+    delete Screen;
+
+    SDL_Quit();
+    IMG_Quit();
+
+    return EXIT_SUCCESS;
 }

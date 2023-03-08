@@ -11,19 +11,49 @@ namespace StartScreen
     class Menu : public Abstract::Visibility
     {
     private:
-        std::list<MenuItem> *Items;
-        std::list<MenuItem>::iterator *ItemsIterator;
+        std::list<StartScreen::MenuItem *> Items;
+        MenuItem *SelectedMenu;
+        MenuItem *CursorIn;
 
     public:
-        SetItem(MenuItem *Item)
+        void SetItem(MenuItem *Item)
         {
-            this->Items->insert(this->ItemsIterator, Item);
+            std::list<StartScreen::MenuItem *>::iterator Iterator = this->Items.begin();
+            this->Items.insert(Iterator, Item);
         }
 
-        RemoveItemByText(char *Text)
+        std::list<StartScreen::MenuItem *> GetItems()
         {
-            auto it std::find_if(this->Items.begin(), this->Items.end(), [&](const MenuItem Item)
-                                 { return Item->GetText() == Text; });
+            return this->Items;
+        }
+
+        void SetSelectedMenu(MenuItem *SelectedMenu)
+        {
+            std::list<StartScreen::MenuItem *>::iterator Iterator = this->Items.begin();
+
+            for (; Iterator != this->Items.end(); ++Iterator)
+            {
+                (*Iterator)->SetColorGreen(255);
+            }
+
+            SelectedMenu->SetColorGreen(200);
+
+            this->SelectedMenu = SelectedMenu;
+        }
+
+        MenuItem *GetSelectedMenu()
+        {
+            return this->SelectedMenu;
+        }
+
+        void SetCursorIn(MenuItem *Item)
+        {
+            this->CursorIn = Item;
+        }
+
+        MenuItem *GetCursorIn()
+        {
+            return this->CursorIn;
         }
     };
 }

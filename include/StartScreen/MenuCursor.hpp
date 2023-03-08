@@ -1,11 +1,11 @@
 #ifndef START_SCREEN_MENU_CURSOR_TRIANGLE_H
 #define START_SCREEN_MENU_CURSOR_TRIANGLE_H
 
-#include "../Abstract/SDL_Image.hpp"
+#include "../Abstract/SDL/Image.hpp"
 
 namespace StartScreen
 {
-    class MenuCursor : public Abstract::SDL_Image
+    class MenuCursor : public Abstract::SDL::Image
     {
     };
 }

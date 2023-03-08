@@ -3,10 +3,13 @@
 
 #include "../Abstract/Scale.hpp"
 #include "EdgeTriangle.hpp"
+#include "Menu.hpp"
+#include "MenuCursor.hpp"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <list>
+#include <iostream>
 
 namespace StartScreen
 {
@@ -14,22 +17,22 @@ namespace StartScreen
     {
     private:
         SDL_Renderer *Renderer;
+        std::list<StartScreen::EdgeTriangle> EdgeTriangles;
+        StartScreen::Menu *Menu;
+        StartScreen::MenuCursor MenuCursor;
 
     public:
-        std::list<StartScreen::EdgeTriangle> EdgeTriangles;
         ~Screen();
-        void SetRenderer(SDL_Renderer *Renderer)
-        {
-            this->Renderer = Renderer;
-        }
 
-        SDL_Renderer *GetRenderer()
-        {
-            return this->Renderer;
-        }
+        void SetRenderer(SDL_Renderer *Renderer);
+        SDL_Renderer *GetRenderer();
 
+        void Init();
         void InitEdgeTriangles();
+        void InitMenu();
+        void InitMenuCursor();
         void Render();
+        StartScreen::Menu *GetMenu();
     };
 }
 
