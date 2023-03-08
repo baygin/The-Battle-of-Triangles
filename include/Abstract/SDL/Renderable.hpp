@@ -20,8 +20,7 @@ namespace Abstract
         public:
             ~Renderable()
             {
-                SDL_FreeSurface(this->Surface);
-                SDL_DestroyTexture(this->Texture);
+                // ...
             }
 
             void SetRenderer(SDL_Renderer *Renderer)

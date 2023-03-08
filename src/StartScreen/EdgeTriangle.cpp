@@ -2,20 +2,9 @@
 
 StartScreen::EdgeTriangle::~EdgeTriangle()
 {
-    if (this->Texture)
-    {
-        SDL_DestroyTexture(this->Texture);
-    }
-
-    if (this->Surface)
-    {
-        SDL_FreeSurface(this->Surface);
-    }
 }
 
 void StartScreen::EdgeTriangle::Render()
 {
-    if(this->Texture) {
-        SDL_RenderCopyEx(this->Renderer, this->Texture, NULL, &this->Rect, this->Angle, 0, SDL_FLIP_NONE);
-    }
+    SDL_RenderCopyEx(this->Renderer, this->Texture, NULL, &this->Rect, this->Angle, 0, SDL_FLIP_NONE);
 }

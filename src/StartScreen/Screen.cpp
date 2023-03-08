@@ -6,7 +6,7 @@ StartScreen::Screen::~Screen()
 
 void StartScreen::Screen::Init()
 {
-    // this->InitEdgeTriangles();
+    this->InitEdgeTriangles();
     this->InitMenu();
     this->InitMenuCursor();
 }

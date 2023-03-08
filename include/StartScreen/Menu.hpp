@@ -11,24 +11,33 @@ namespace StartScreen
     class Menu : public Abstract::Visibility
     {
     private:
-        std::list<StartScreen::MenuItem*> Items;
+        std::list<StartScreen::MenuItem *> Items;
         MenuItem *SelectedMenu;
         MenuItem *CursorIn;
 
     public:
         void SetItem(MenuItem *Item)
         {
-            std::list<StartScreen::MenuItem*>::iterator Iterator = this->Items.begin();
+            std::list<StartScreen::MenuItem *>::iterator Iterator = this->Items.begin();
             this->Items.insert(Iterator, Item);
         }
 
-        std::list<StartScreen::MenuItem*> GetItems()
+        std::list<StartScreen::MenuItem *> GetItems()
         {
             return this->Items;
         }
 
         void SetSelectedMenu(MenuItem *SelectedMenu)
         {
+            std::list<StartScreen::MenuItem *>::iterator Iterator = this->Items.begin();
+
+            for (; Iterator != this->Items.end(); ++Iterator)
+            {
+                (*Iterator)->SetColorGreen(255);
+            }
+
+            SelectedMenu->SetColorGreen(200);
+
             this->SelectedMenu = SelectedMenu;
         }
 

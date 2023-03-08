@@ -21,21 +21,20 @@ int main()
     StartScreen::Menu *Menu = Screen->GetMenu();
 
     SDL_Event Event;
-    int Loop = 1;
 
-    while (Loop)
+    const int FPS = 60;
+    const int FrameDelay = 1000 / FPS;
+
+    Uint32 FrameStart;
+    int FrameTime;
+
+    while (1)
     {
-        const int FPS = 60;
-        const int FrameDelay = 1000 / FPS;
-
-        Uint32 FrameStart;
-        int FrameTime;
-
         SDL_PollEvent(&Event);
 
         if (Event.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
         {
-            Loop = 0;
+            break;
         }
 
         if (Event.type == SDL_KEYDOWN && Event.key.keysym.scancode == SDL_SCANCODE_DOWN)
@@ -59,11 +58,11 @@ int main()
 
             std::list<StartScreen::MenuItem *>::iterator Iterator = std::find(Items.begin(), Items.end(), SelectedItem);
 
-            std::list<StartScreen::MenuItem *>::iterator Prev = std::next(Iterator, 1);
+            std::list<StartScreen::MenuItem *>::iterator Next = std::next(Iterator, 1);
 
-            if (Prev != Items.end())
+            if (Next != Items.end())
             {
-                Menu->SetSelectedMenu(*Prev);
+                Menu->SetSelectedMenu(*Next);
             }
         }
 
