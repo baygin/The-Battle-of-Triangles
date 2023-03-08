@@ -49,8 +49,8 @@ namespace Abstract
 
             void CreateTextureFromText()
             {
-                this->SetSurface(TTF_RenderText_Solid(this->Font, this->Text, this->Color));
-                this->SetTexture(SDL_CreateTextureFromSurface(this->Renderer, this->Surface));
+                this->Surface = TTF_RenderText_Solid(this->Font, this->Text, this->Color);
+                this->Texture = SDL_CreateTextureFromSurface(this->Renderer, this->Surface);
             }
 
             void SetColorRed(Uint8 Color)

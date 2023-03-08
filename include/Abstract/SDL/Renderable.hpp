@@ -22,7 +22,6 @@ namespace Abstract
             {
                 SDL_FreeSurface(this->Surface);
                 SDL_DestroyTexture(this->Texture);
-                SDL_DestroyRenderer(this->Renderer);
             }
 
             void SetRenderer(SDL_Renderer *Renderer)

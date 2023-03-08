@@ -37,6 +37,11 @@ namespace Abstract
             {
                 this->Rect = Rect;
             }
+            
+            SDL_Rect GetRect()
+            {
+                return this->Rect;
+            }
 
             int GetHeight()
             {
