@@ -11,14 +11,14 @@ int main()
     SDL_Window *Window = SDL_CreateWindow("The Battle of Triangles", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, Width, Height, 0);
     SDL_Renderer *Renderer = SDL_CreateRenderer(Window, -1, 0);
 
-    StartScreen::Screen *Screen = new StartScreen::Screen();
+    Game::StartScreen::Screen *Screen = new Game::StartScreen::Screen();
     Screen->SetRenderer(Renderer);
     Screen->SetHeight(Height);
     Screen->SetWidth(Width);
 
     Screen->Init();
 
-    StartScreen::Menu *Menu = Screen->GetMenu();
+    Game::StartScreen::Menu *Menu = Screen->GetMenu();
 
     SDL_Event Event;
 
@@ -39,12 +39,12 @@ int main()
 
         if (Event.type == SDL_KEYDOWN && Event.key.keysym.scancode == SDL_SCANCODE_DOWN)
         {
-            std::list<StartScreen::MenuItem *> Items = Menu->GetItems();
-            StartScreen::MenuItem *SelectedItem = Menu->GetSelectedMenu();
+            std::list<Game::StartScreen::MenuItem *> Items = Menu->GetItems();
+            Game::StartScreen::MenuItem *SelectedItem = Menu->GetSelectedMenu();
 
-            std::list<StartScreen::MenuItem *>::iterator Iterator = std::find(Items.begin(), Items.end(), SelectedItem);
+            std::list<Game::StartScreen::MenuItem *>::iterator Iterator = std::find(Items.begin(), Items.end(), SelectedItem);
 
-            std::list<StartScreen::MenuItem *>::iterator Prev = std::prev(Iterator, 1);
+            std::list<Game::StartScreen::MenuItem *>::iterator Prev = std::prev(Iterator, 1);
 
             if (Prev != Items.end())
             {
@@ -53,12 +53,12 @@ int main()
         }
         else if (Event.type == SDL_KEYDOWN && Event.key.keysym.scancode == SDL_SCANCODE_UP)
         {
-            std::list<StartScreen::MenuItem *> Items = Menu->GetItems();
-            StartScreen::MenuItem *SelectedItem = Menu->GetSelectedMenu();
+            std::list<Game::StartScreen::MenuItem *> Items = Menu->GetItems();
+            Game::StartScreen::MenuItem *SelectedItem = Menu->GetSelectedMenu();
 
-            std::list<StartScreen::MenuItem *>::iterator Iterator = std::find(Items.begin(), Items.end(), SelectedItem);
+            std::list<Game::StartScreen::MenuItem *>::iterator Iterator = std::find(Items.begin(), Items.end(), SelectedItem);
 
-            std::list<StartScreen::MenuItem *>::iterator Next = std::next(Iterator, 1);
+            std::list<Game::StartScreen::MenuItem *>::iterator Next = std::next(Iterator, 1);
 
             if (Next != Items.end())
             {
