@@ -1,8 +1,8 @@
 output = TheBattleOfTriangles
 
-c_sources = $(wildcard src/*.c) $(wildcard src/*/*.c)
-cp_sources = $(wildcard src/*.cpp) $(wildcard src/*/*.cpp)
-objects = $(c_sources:.c=.o) $(cp_sources:.cpp=.o) 
+c_sources = $(wildcard src/*.c) $(wildcard src/*/*.c) $(wildcard src/*/*/*.c)
+cpp_sources = $(wildcard src/*.cpp) $(wildcard src/*/*.cpp) $(wildcard src/*/*/*.cpp)
+objects = $(c_sources:.c=.o) $(cpp_sources:.cpp=.o) 
 objects := $(addsuffix .o,$(basename $(objects)))
 
 flags = -g -Wl,--copy-dt-needed-entries -I include -L lib -Wall -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lGL -lSDL2_mixer -loyamo -ljson-c -luuid
@@ -16,5 +16,6 @@ clean:
 	-rm -rf ./build/*
 	-rm -rf src/*.o
 	-rm -rf src/*/*.o
+	-rm -rf src/*/*/*.o
 run:
 	./bin/$(output)

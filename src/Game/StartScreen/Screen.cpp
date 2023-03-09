@@ -1,22 +1,22 @@
-#include "../../include/StartScreen/Screen.hpp"
+#include "../../../include/Game/StartScreen/Screen.hpp"
 
-StartScreen::Screen::~Screen()
+Game::StartScreen::Screen::~Screen()
 {
 }
 
-void StartScreen::Screen::Init()
+void Game::StartScreen::Screen::Init()
 {
     this->InitEdgeTriangles();
     this->InitMenu();
     this->InitMenuCursor();
 }
 
-void StartScreen::Screen::InitEdgeTriangles()
+void Game::StartScreen::Screen::InitEdgeTriangles()
 {
     // We will use again
     SDL_Rect Rect = {0, 0, 100, 100};
 
-    StartScreen::EdgeTriangle *TopLeft = new StartScreen::EdgeTriangle();
+    EdgeTriangle *TopLeft = new EdgeTriangle();
     TopLeft->SetRenderer(this->Renderer);
     TopLeft->SetRect(Rect);
     TopLeft->SetX(-20);
@@ -29,7 +29,7 @@ void StartScreen::Screen::InitEdgeTriangles()
     SDL_Texture *Texture = TopLeft->GetTexture();
     SDL_Surface *Surface = TopLeft->GetSurface();
 
-    StartScreen::EdgeTriangle *TopRight = new StartScreen::EdgeTriangle();
+    EdgeTriangle *TopRight = new EdgeTriangle();
     TopRight->SetRenderer(this->Renderer);
     TopRight->SetRect(Rect);
     TopRight->SetX(this->Width - 80);
@@ -38,7 +38,7 @@ void StartScreen::Screen::InitEdgeTriangles()
     TopRight->SetTexture(Texture);
     TopRight->SetSurface(Surface);
 
-    StartScreen::EdgeTriangle *BottomLeft = new StartScreen::EdgeTriangle();
+    EdgeTriangle *BottomLeft = new EdgeTriangle();
     BottomLeft->SetRenderer(this->Renderer);
     BottomLeft->SetRect(Rect);
     BottomLeft->SetX(-20);
@@ -47,7 +47,7 @@ void StartScreen::Screen::InitEdgeTriangles()
     BottomLeft->SetTexture(Texture);
     BottomLeft->SetSurface(Surface);
 
-    StartScreen::EdgeTriangle *BottomRight = new StartScreen::EdgeTriangle();
+    EdgeTriangle *BottomRight = new EdgeTriangle();
     BottomRight->SetRenderer(this->Renderer);
     BottomRight->SetRect(Rect);
     BottomRight->SetX(this->Width - 80);
@@ -56,7 +56,7 @@ void StartScreen::Screen::InitEdgeTriangles()
     BottomRight->SetTexture(Texture);
     BottomRight->SetSurface(Surface);
 
-    std::list<StartScreen::EdgeTriangle>::iterator Iterator = this->EdgeTriangles.begin();
+    std::list<EdgeTriangle>::iterator Iterator = this->EdgeTriangles.begin();
 
     this->EdgeTriangles.insert(Iterator, *TopLeft);
     this->EdgeTriangles.insert(Iterator, *TopRight);
@@ -64,7 +64,7 @@ void StartScreen::Screen::InitEdgeTriangles()
     this->EdgeTriangles.insert(Iterator, *BottomRight);
 }
 
-void StartScreen::Screen::InitMenu()
+void Game::StartScreen::Screen::InitMenu()
 {
     TTF_Init();
     TTF_Font *Neucha = TTF_OpenFont("assets/fonts/Neucha-Regular.ttf", 24);
@@ -78,7 +78,7 @@ void StartScreen::Screen::InitMenu()
 
     for (int i = 0; MenuListIterator != MenuList.end(); ++MenuListIterator, i++)
     {
-        StartScreen::MenuItem *Item = new StartScreen::MenuItem();
+        MenuItem *Item = new MenuItem();
         Item->SetRect((SDL_Rect){(this->Height / 2) - 50, FirstItemY + (i * 100), 300, 70});
         Item->SetRenderer(this->Renderer);
         Item->SetText((char *)*MenuListIterator);
@@ -95,7 +95,7 @@ void StartScreen::Screen::InitMenu()
     this->Menu = Menu;
 }
 
-void StartScreen::Screen::InitMenuCursor()
+void Game::StartScreen::Screen::InitMenuCursor()
 {
     StartScreen::MenuCursor *Cursor = new StartScreen::MenuCursor();
     Cursor->SetRenderer(this->Renderer);
@@ -106,10 +106,10 @@ void StartScreen::Screen::InitMenuCursor()
     this->MenuCursor = *Cursor;
 }
 
-void StartScreen::Screen::Render()
+void Game::StartScreen::Screen::Render()
 {
     // Edge triangles
-    std::list<StartScreen::EdgeTriangle>::iterator EdgeTrianglesIterator = this->EdgeTriangles.begin();
+    std::list<EdgeTriangle>::iterator EdgeTrianglesIterator = this->EdgeTriangles.begin();
 
     for (; EdgeTrianglesIterator != EdgeTriangles.end(); ++EdgeTrianglesIterator)
     {
@@ -117,8 +117,8 @@ void StartScreen::Screen::Render()
     }
 
     // Menu
-    std::list<StartScreen::MenuItem *> MainMenuItems = this->Menu->GetItems();
-    std::list<StartScreen::MenuItem *>::iterator MenuItemIterator = MainMenuItems.begin();
+    std::list<MenuItem *> MainMenuItems = this->Menu->GetItems();
+    std::list<MenuItem *>::iterator MenuItemIterator = MainMenuItems.begin();
 
     for (; MenuItemIterator != MainMenuItems.end(); ++MenuItemIterator)
     {
@@ -126,24 +126,24 @@ void StartScreen::Screen::Render()
     }
 
     // Menu cursor
-    StartScreen::MenuItem *SelectedItem = this->Menu->GetSelectedMenu();
+    MenuItem *SelectedItem = this->Menu->GetSelectedMenu();
 
     this->MenuCursor.SetX(SelectedItem->GetX() - 75);
     this->MenuCursor.SetY(SelectedItem->GetY() + 12);
     this->MenuCursor.Render();
 }
 
-void StartScreen::Screen::SetRenderer(SDL_Renderer *Renderer)
+void Game::StartScreen::Screen::SetRenderer(SDL_Renderer *Renderer)
 {
     this->Renderer = Renderer;
 }
 
-SDL_Renderer *StartScreen::Screen::GetRenderer()
+SDL_Renderer *Game::StartScreen::Screen::GetRenderer()
 {
     return this->Renderer;
 }
 
-StartScreen::Menu *StartScreen::Screen::GetMenu()
+Game::StartScreen::Menu *Game::StartScreen::Screen::GetMenu()
 {
     return this->Menu;
 }

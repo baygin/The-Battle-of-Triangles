@@ -2,7 +2,7 @@
 #define MAIN_H
 
 #include <stdlib.h>
-#include "./StartScreen/Screen.hpp"
-#include "./StartScreen/EdgeTriangle.hpp"
+#include "./Game/StartScreen/Screen.hpp"
+#include "./Game/StartScreen/EdgeTriangle.hpp"
 
 #endif // !MAIN_H
