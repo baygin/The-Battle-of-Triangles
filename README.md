@@ -4,19 +4,19 @@ The Battle of Triangles is a C/C++ clone project based on the popular mobile gam
 
 ### Todo
 - [ ] **Start screen** (<a href="https://github.com/baygin/The-Battle-of-Triangles/blob/master/assets/raw/start-screen/start-screen.png">start-screen.png</a>)
-    - [ ] **Cursor**
+    - [X] **Cursor**
     - [X] **Edge Triangles**
     - [ ] **Try tBoT**
         - [ ] Offline mode to test the mechanics
-    - [ ] **Choose room**
+    - [X] **Choose room**
         - [ ] Room list
         - [ ] Create room
         - [ ] Join room
-    - [ ] **Settings**
+    - [X] **Settings**
         - [ ] Sound
         - [ ] Fullscreen
         - [ ] Change skin
-    - [ ] **Quit**
+    - [X] **Quit**
 
 ### Contributing
 
