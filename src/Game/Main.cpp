@@ -2,6 +2,7 @@
 
 Game::Main::Main()
 {
+    this->Settings = new Game::State::Settings();
 }
 
 Game::Main::~Main()
@@ -9,7 +10,8 @@ Game::Main::~Main()
     SDL_DestroyWindow(this->Window);
     SDL_DestroyRenderer(this->Renderer);
 
-    delete StartScreen;
+    delete this->StartScreen;
+    delete this->Settings;
 
     SDL_Quit();
     IMG_Quit();
@@ -55,6 +57,7 @@ void Game::Main::Init()
     this->StartScreen->SetRenderer(this->Renderer);
     this->StartScreen->SetHeight(this->Height);
     this->StartScreen->SetWidth(this->Width);
+    this->StartScreen->SetSettings(this->Settings);
     this->StartScreen->Init();
 
     this->CurrentScreen = this->StartScreen;
@@ -70,7 +73,7 @@ void Game::Main::RenderCurrentScreen()
 
 void Game::Main::Render()
 {
-    while (this->Running)
+    while (this->Settings->GetRunning())
     {
         this->HandleKeyboardEvent();
         SDL_RenderClear(this->Renderer);
@@ -91,12 +94,15 @@ void Game::Main::HandleKeyboardEvent()
 
     if (this->SDLEvent.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
     {
-        this->Running = false;
+        this->Settings->SetRunning(false);
         return;
     }
 
-    if (this->CurrentScreen == this->StartScreen)
+    if (this->SDLEvent.type == SDL_KEYDOWN)
     {
-        this->StartScreen->HandleKeyboardEvent(this->SDLEvent.key.keysym.scancode);
+        if (this->CurrentScreen == this->StartScreen)
+        {
+            this->StartScreen->HandleKeydownEvent(this->SDLEvent.key.keysym.scancode);
+        }
     }
 }

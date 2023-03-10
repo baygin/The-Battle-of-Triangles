@@ -15,6 +15,7 @@ namespace Game
         {
         private:
             std::list<StartScreen::MenuItem> SubItems;
+            bool ShowSubItems = false;
 
         public:
             void AddSubItem(MenuItem *Item)

@@ -2,6 +2,8 @@
 #define START_SCREEN_H
 
 #include "../../Abstract/Scale.hpp"
+#include "../../Abstract/State/Settings.hpp"
+#include "../State/Settings.hpp"
 #include "EdgeTriangle.hpp"
 #include "Menu.hpp"
 #include "MenuCursor.hpp"
@@ -9,13 +11,15 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <list>
+#include <algorithm>
 #include <iostream>
 
 namespace Game
 {
     namespace StartScreen
     {
-        class Screen : public Abstract::Scale
+        class Screen : public Abstract::Scale,
+                       public Abstract::State::Settings
 
         {
         private:
@@ -42,7 +46,7 @@ namespace Game
             void Render();
             StartScreen::Menu *GetMenu();
 
-            void HandleKeyboardEvent(SDL_Scancode Code);
+            void HandleKeydownEvent(SDL_Scancode Code);
         };
     }
 }

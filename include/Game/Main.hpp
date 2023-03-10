@@ -2,6 +2,7 @@
 #define GAME_MAIN_H
 
 #include "./StartScreen/Screen.hpp"
+#include "./State/Settings.hpp"
 #include "../Abstract/Scale.hpp"
 
 namespace Game
@@ -12,10 +13,10 @@ namespace Game
         int FrameDelay = 1000 / 60;
         int FrameTime;
         Uint32 FrameStart;
-        bool Running = true;
         SDL_Window *Window;
         SDL_Renderer *Renderer;
         SDL_Event SDLEvent;
+        Game::State::Settings* Settings;
 
         /**
          * @brief Screens

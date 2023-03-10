@@ -1,53 +1,36 @@
-#ifndef START_SCREEN_MENU_H
-#define START_SCREEN_MENU_H
+#ifndef GAME_START_SCREEN_MENU_H
+#define GAME_START_SCREEN_MENU_H
 
 #include "MenuItem.hpp"
 #include "../../Abstract/Visibility.hpp"
+#include "../../Abstract/State/Settings.hpp"
 
 #include <list>
+#include <algorithm>
 
 namespace Game
 {
     namespace StartScreen
     {
-        class Menu : public Abstract::Visibility
+        class Menu : public Abstract::Visibility,
+                     public Abstract::State::Settings
         {
         private:
             std::list<Game::StartScreen::MenuItem *> Items;
             MenuItem *SelectedMenu;
 
         public:
-            void SetItem(MenuItem *Item)
-            {
-                std::list<StartScreen::MenuItem *>::iterator Iterator = this->Items.begin();
-                this->Items.insert(Iterator, Item);
-            }
-
-            std::list<StartScreen::MenuItem *> GetItems()
-            {
-                return this->Items;
-            }
-
-            void SetSelectedMenu(MenuItem *SelectedMenu)
-            {
-                std::list<StartScreen::MenuItem *>::iterator Iterator = this->Items.begin();
-
-                for (; Iterator != this->Items.end(); ++Iterator)
-                {
-                    (*Iterator)->SetColorGreen(255);
-                }
-
-                SelectedMenu->SetColorGreen(200);
-
-                this->SelectedMenu = SelectedMenu;
-            }
-
-            MenuItem *GetSelectedMenu()
-            {
-                return this->SelectedMenu;
-            }
+            void SetItem(MenuItem *Item);
+            std::list<StartScreen::MenuItem *> GetItems();
+            void SetSelectedMenu(MenuItem *SelectedMenu);
+            MenuItem *GetSelectedMenu();
+            void HandleKeydownEvent(SDL_Scancode Code);
+            void HandleKeydownUp();
+            void HandleKeydownDown();
+            void HandleKeydownEnter();
+            void HandleKeydownBackspace();
         };
     }
 }
 
-#endif // !START_SCREEN_MENU_H
+#endif // !GAME_START_SCREEN_MENU_H

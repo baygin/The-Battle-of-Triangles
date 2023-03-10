@@ -49,13 +49,27 @@ namespace Abstract
 
             void CreateTextureFromText()
             {
+                if (this->Surface)
+                {
+                    SDL_FreeSurface(this->Surface);
+                }
+
+                if (this->Texture)
+                {
+                    SDL_DestroyTexture(this->Texture);
+                }
+
                 this->Surface = TTF_RenderText_Solid(this->Font, this->Text, this->Color);
                 this->Texture = SDL_CreateTextureFromSurface(this->Renderer, this->Surface);
             }
 
             void SetColorRed(Uint8 Color)
             {
-                this->Color.r = Color;
+                if (this->Color.r != Color)
+                {
+                    this->Color.r = Color;
+                    this->CreateTextureFromText();
+                }
             }
 
             Uint8 GetColorRed()
@@ -65,7 +79,11 @@ namespace Abstract
 
             void SetColorBlue(Uint8 Color)
             {
-                this->Color.b = Color;
+                if (this->Color.b != Color)
+                {
+                    this->Color.b = Color;
+                    this->CreateTextureFromText();
+                }
             }
 
             Uint8 GetColorBlue()
@@ -75,7 +93,11 @@ namespace Abstract
 
             void SetColorGreen(Uint8 Color)
             {
-                this->Color.g = Color;
+                if (this->Color.g != Color)
+                {
+                    this->Color.g = Color;
+                    this->CreateTextureFromText();
+                }
             }
 
             Uint8 GetColorGreen()

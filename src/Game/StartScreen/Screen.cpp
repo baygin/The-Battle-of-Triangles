@@ -69,6 +69,7 @@ void Game::StartScreen::Screen::InitMenu()
     TTF_Init();
     TTF_Font *Neucha = TTF_OpenFont("assets/fonts/Neucha-Regular.ttf", 24);
     StartScreen::Menu *Menu = new StartScreen::Menu();
+    Menu->SetSettings(this->GetSettings());
 
     const int FirstItemY = (this->Height / 2) - 100;
     const int X = (this->Height / 2) - 100;
@@ -148,44 +149,7 @@ Game::StartScreen::Menu *Game::StartScreen::Screen::GetMenu()
     return this->Menu;
 }
 
-void Game::StartScreen::Screen::HandleKeyboardEvent(SDL_Scancode Code)
+void Game::StartScreen::Screen::HandleKeydownEvent(SDL_Scancode Code)
 {
-    switch (Code)
-    {
-    case SDL_SCANCODE_UP:
-        this->HandleKeydownUp();
-        break;
-    case SDL_SCANCODE_DOWN:
-        this->HandleKeydownDown();
-        break;
-    case SDL_SCANCODE_KP_ENTER:
-    case SDL_SCANCODE_RETURN:
-        this->HandleKeydownEnter();
-        break;
-    case SDL_SCANCODE_BACKSPACE:
-        this->HandleKeydownBackspace();
-        break;
-    default:
-        break;
-    }
-}
-
-void Game::StartScreen::Screen::HandleKeydownUp()
-{
-    printf("Up\n");
-}
-
-void Game::StartScreen::Screen::HandleKeydownDown()
-{
-    printf("Down\n");
-}
-
-void Game::StartScreen::Screen::HandleKeydownEnter()
-{
-    printf("Enter\n");
-}
-
-void Game::StartScreen::Screen::HandleKeydownBackspace()
-{
-    printf("Backspace\n");
+    this->Menu->HandleKeydownEvent(Code);
 }
