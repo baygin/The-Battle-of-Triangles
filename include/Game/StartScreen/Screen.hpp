@@ -5,7 +5,6 @@
 #include "EdgeTriangle.hpp"
 #include "Menu.hpp"
 #include "MenuCursor.hpp"
-#include "../State.hpp"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -17,13 +16,18 @@ namespace Game
     namespace StartScreen
     {
         class Screen : public Abstract::Scale
+
         {
         private:
             SDL_Renderer *Renderer;
             std::list<StartScreen::EdgeTriangle> EdgeTriangles;
             StartScreen::Menu *Menu;
             StartScreen::MenuCursor MenuCursor;
-            Game::State State;
+
+            void HandleKeydownUp();
+            void HandleKeydownDown();
+            void HandleKeydownEnter();
+            void HandleKeydownBackspace();
 
         public:
             ~Screen();
@@ -37,6 +41,8 @@ namespace Game
             void InitMenuCursor();
             void Render();
             StartScreen::Menu *GetMenu();
+
+            void HandleKeyboardEvent(SDL_Scancode Code);
         };
     }
 }

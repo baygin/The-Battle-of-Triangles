@@ -1,8 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <stdlib.h>
-#include "./Game/StartScreen/Screen.hpp"
-#include "./Game/StartScreen/EdgeTriangle.hpp"
+#include "./Game/Main.hpp"
 
 #endif // !MAIN_H

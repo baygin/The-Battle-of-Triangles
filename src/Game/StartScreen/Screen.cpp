@@ -147,3 +147,45 @@ Game::StartScreen::Menu *Game::StartScreen::Screen::GetMenu()
 {
     return this->Menu;
 }
+
+void Game::StartScreen::Screen::HandleKeyboardEvent(SDL_Scancode Code)
+{
+    switch (Code)
+    {
+    case SDL_SCANCODE_UP:
+        this->HandleKeydownUp();
+        break;
+    case SDL_SCANCODE_DOWN:
+        this->HandleKeydownDown();
+        break;
+    case SDL_SCANCODE_KP_ENTER:
+    case SDL_SCANCODE_RETURN:
+        this->HandleKeydownEnter();
+        break;
+    case SDL_SCANCODE_BACKSPACE:
+        this->HandleKeydownBackspace();
+        break;
+    default:
+        break;
+    }
+}
+
+void Game::StartScreen::Screen::HandleKeydownUp()
+{
+    printf("Up\n");
+}
+
+void Game::StartScreen::Screen::HandleKeydownDown()
+{
+    printf("Down\n");
+}
+
+void Game::StartScreen::Screen::HandleKeydownEnter()
+{
+    printf("Enter\n");
+}
+
+void Game::StartScreen::Screen::HandleKeydownBackspace()
+{
+    printf("Backspace\n");
+}

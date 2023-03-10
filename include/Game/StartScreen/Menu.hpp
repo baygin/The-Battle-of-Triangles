@@ -15,7 +15,6 @@ namespace Game
         private:
             std::list<Game::StartScreen::MenuItem *> Items;
             MenuItem *SelectedMenu;
-            MenuItem *CursorIn;
 
         public:
             void SetItem(MenuItem *Item)
@@ -46,16 +45,6 @@ namespace Game
             MenuItem *GetSelectedMenu()
             {
                 return this->SelectedMenu;
-            }
-
-            void SetCursorIn(MenuItem *Item)
-            {
-                this->CursorIn = Item;
-            }
-
-            MenuItem *GetCursorIn()
-            {
-                return this->CursorIn;
             }
         };
     }
