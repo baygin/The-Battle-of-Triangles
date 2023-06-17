@@ -2,6 +2,7 @@
 #define GAME_EVENT_KEYBOARD_H
 
 #include <SDL2/SDL.h>
+#include "Keys.hpp"
 
 namespace Game
 {
@@ -10,14 +11,14 @@ namespace Game
         class Keyboard
         {
         private:
-            SDL_Scancode Code;
+            Game::Event::Keys Key;
             void (*Function)();
 
         public:
-            void SetCode(SDL_Scancode Code);
-            SDL_Scancode GetCode();
-            void SetFunction(void (*Function)());
-            void Handle(void * Game);
+            Keyboard(Game::Event::Keys Key);
+            Game::Event::Keys GetKey();
+            void SetFunction(void(*Function)());
+            void Handle();
         };
     }
 }
