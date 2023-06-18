@@ -19,6 +19,8 @@ The Battle of Triangles is a C/C++ clone project based on the popular mobile gam
     - [ ] Change skin
   - [ ] **Quit**
 - [x] Event handler
+- [ ] Scene manager
+- [ ] State manager
 
 ### Contributing
 
